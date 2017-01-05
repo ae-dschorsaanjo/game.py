@@ -2,24 +2,22 @@
 
 """
     Copyright (C) 2016  B. Zolt'n Gorza
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
+    
 from enum import Enum, EnumMeta, unique
 import math
 import random
+
 
 # constants
 DEFAULT_RIGHT = "Right"
@@ -50,7 +48,8 @@ class Operations(Enum):
 
 def get_operations(without=[Operations.nothing]):
     """
-    It returns all members of Operations without the operation(w) within the 'without' array.
+    It returns all members of Operations without the operation(w)
+    within the 'without' array.
     """
     out = []
     for o in Operations:
@@ -364,7 +363,7 @@ class Statistics:
             text     : text of title
             underchar: character of underline
         """
-        return text + "\n" + underchar*len(text) + "\n"
+        return "\n" + text + "\n" + underchar*len(text) + "\n\n"
 
     def _get_stats(self, title, stats):
         """
@@ -560,16 +559,26 @@ class Game:
         """
         It starts a game. It also handle the things if it's over.
         """
+        print()
         if self._numofgames == 0:
             self._infinite_game()
         else:
             self._finite_game()
-        print("Your game is OVER.")
+        print("\nYour game is OVER.")
         input("Please press a key to continue")
         print("\n"*24)
         return str(self._statistics)
+        
+
+def hello():
+    print("Hello!\n",
+          "This is not a game.\nthis is THE game.",
+          sep="\n",
+          end="\n\n")
+
 
 if __name__ == '__main__':
+    hello()
     g = Game()
     stats = g.start()
     print(stats)

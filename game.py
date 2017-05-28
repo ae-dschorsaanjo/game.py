@@ -490,7 +490,7 @@ class Game:
         try:
             nog = int(input("Please type the number of games "
                             "(0 for infinite): "))
-            if (not nog) or (nog not in range(0, MAX_GAME+1)):
+            if nog not in range(0, MAX_GAME+1):
                 raise ValueError
         except ValueError:
             print("Number of games has to be an integer between " +

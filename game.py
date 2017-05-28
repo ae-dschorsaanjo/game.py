@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from enum import Enum, EnumMeta, unique
 import math
 import random
+import datetime
 
 
 # constants
@@ -489,7 +490,7 @@ class Game:
         try:
             nog = int(input("Please type the number of games "
                             "(0 for infinite): "))
-            if nog not in range(0, MAX_GAME+1):
+            if (not nog) or (nog not in range(0, MAX_GAME+1)):
                 raise ValueError
         except ValueError:
             print("Number of games has to be an integer between " +
@@ -581,5 +582,6 @@ if __name__ == '__main__':
     g = Game()
     stats = g.start()
     print(stats)
-    write_out(stats, "report")
+    now = datetime.datetime.now()
+    write_out(stats, "report-" + now.strftime("%y%m%d%H%M%S"))
     input("Please press a key to exit")

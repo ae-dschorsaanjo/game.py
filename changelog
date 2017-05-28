@@ -2,6 +2,7 @@
 -------------
 
 - Bug fixed that caused false False result
+- Report files' name now contain the writing's time
 - Minimal output modifies
 - Minimal formatting changes
 

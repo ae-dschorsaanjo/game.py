@@ -1,19 +1,22 @@
 #! /usr/bin/env python3
 
 """
-    Copyright (C) 2016  B. Zolt'n Gorza
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+game.py Copyright (C) 2016  B. Zolt'n Gorza <gorza@freemail.hu>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-    
+
 from enum import Enum, EnumMeta, unique
 import math
 import random
@@ -30,7 +33,7 @@ class Operations(Enum):
     """
     Enum of operations.
     """
-    
+
     nothing  = " "
     add      = "+"
     subtract = "-"
@@ -38,10 +41,10 @@ class Operations(Enum):
     division = "/"
     intdiv   = "\\"
     modulo   = "%"
-    
+
     def __bool__(self):
         return not (self == Operations.nothing)
-    
+
     def __str__(self):
         return self.value
 
@@ -77,7 +80,7 @@ class Expression:
     """
     It contains every informathions about.
     """
-    
+
     # arguments
     _a          = None
     _b          = None
@@ -178,7 +181,7 @@ class Expression:
         else:
             pass
         a, b = cls._validate_expression(cls, o, a, b)
-        
+
         return Expression(a, b, o)
 
     def _formatted_output(self):
@@ -209,7 +212,7 @@ class Expression:
             'r0': self._result,
             'r' : self._u_result
         }
-    
+
     def __bool__(self):
         """
         It returns true when the user's and the expression's results
@@ -218,24 +221,19 @@ class Expression:
         """
         if not(self._result == None and
                self._u_result == None):
-            
-            # if result isn't float
-            if self._result is not float:
-                return self._result == self._u_result
-            # if result is float
-            else:
-                return "{:.2f}".format(
+
+            return "{:.2f}".format(
                             self._result
                         ) == "{:.2f}".format(
                                 self._u_result
                             )
         else:
             return False
-    
+
     def __str__(self):
         """
         It returns the expression as a 'formatted' string.
-        
+
         If the user's result wasn't given, the returned form is for
         the game; if it's given, it returns for the report (with all
         of needed information, e.g.: user's result is right or not).
@@ -329,7 +327,7 @@ class Statistics:
             self._stats_right[operator] += 1
         else:
             self._stats_wrong[operator] += 1
-    
+
     def add_expression(self, expr):
         """
         Add an expression into the statistics.
@@ -368,7 +366,7 @@ class Statistics:
     def _get_stats(self, title, stats):
         """
         It returns statistics with a title.
-        
+
         Parameters:
             text : text of title
             stats: statistics
@@ -489,7 +487,8 @@ class Game:
         It asks, valid and returns the number of games.
         """
         try:
-            nog = int(input("Please type the number of games: "))
+            nog = int(input("Please type the number of games "
+                            "(0 for infinite): "))
             if nog not in range(0, MAX_GAME+1):
                 raise ValueError
         except ValueError:
@@ -506,7 +505,7 @@ class Game:
         as a float, it return None.
         """
         user_input = input((" " * expr_length) if was_false \
-                                                   else "")
+                                               else "")
         try:
             user_input = float(user_input.replace(",", "."))
         except ValueError:
@@ -529,7 +528,7 @@ class Game:
     def _game_engine(self, num_of_game):
         """
         It makes the game playable.
-        
+
         The loop is in another function and it controls the input and
         the output.
         """
@@ -568,7 +567,7 @@ class Game:
         input("Please press a key to continue")
         print("\n"*24)
         return str(self._statistics)
-        
+
 
 def hello():
     print("Hello!\n",

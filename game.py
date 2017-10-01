@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 """
-game.py Copyright (C) 2016  B. Zolt'n Gorza <gorza@freemail.hu>
+game.py Copyright (C) 2016  B. Zoltán Gorza <b.zoltan.gorza@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
